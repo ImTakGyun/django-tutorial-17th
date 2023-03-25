@@ -80,12 +80,12 @@
   
 ## Part2
 ### Settings.py
-  
-<li>MySQL 연결하기</li>
+
+  <li>MySQL 연결하기</li>
   
   <pre><code>
   # 연결을 위한 패키지 설정
-  import pymysql  
+  import pymysql
   pymysql.install_as_MySQLdb()
   </code></pre>
 
@@ -105,83 +105,82 @@
   
 #### INSTALLED_APPS: 현재 활성화된(=사용되는) 모든 Django 어플리케이션들의 이름들
   
-<li>django.contrib.admin – 관리용 사이트</li>
-<li>django.contrib.auth – 인증 시스템</li>
-<li>django.contrib.contenttypes – 컨텐츠 타입을 위한 프레임워크</li>
-<li>django.contrib.sessions – 세션 프레임워크</li>
-<li>django.contrib.messages – 메세징 프레임워크</li>
-<li>django.contrib.staticfiles – 정적 파일을 관리하는 프레임워크</li>
+  <li>django.contrib.admin – 관리용 사이트</li>
+  <li>django.contrib.auth – 인증 시스템</li>
+  <li>django.contrib.contenttypes – 컨텐츠 타입을 위한 프레임워크</li>
+  <li>django.contrib.sessions – 세션 프레임워크</li>
+  <li>django.contrib.messages – 메세징 프레임워크</li>
+  <li>django.contrib.staticfiles – 정적 파일을 관리하는 프레임워크</li>
 
 <br/>
   
 ### Model 만들기
   
-<li>Model: 메타데이터를 가진 데이터베이스의 구조(layout)</li>
-<li>데이터베이스의 각 필드는 Field 클래스의 인스턴스로서 표현</li>
+  <li>Model: 메타데이터를 가진 데이터베이스의 구조(layout)</li>
+  <li>데이터베이스의 각 필드는 Field 클래스의 인스턴스로서 표현</li>
   
  <pre><code>
   from django.db import models
   
-  # question 테이블에 question_text, pub_date 라는 속성들이 생성
+  # Question 테이블과 question_text, pub_date 속성들 생성
+  
   class Question(models.Model):
       question_text = models.CharField(max_length=200)
       pub_date = models.DateTimeField('date published')
  </code></pre>
 
 ### Model 활성화 
-<li> INSTALLED_APPS 설정에 추가</li>
+  <li> INSTALLED_APPS 설정에 추가</li>
   
- <code><pre>
+  <code><pre>
   INSTALLED_APPS = [
    'polls.apps.PollsConfig',
    ...
   ]
   </code></pre>
   
-<li> 변경사항에 대한 migration 생성</li>
+  <li> 변경사항에 대한 migration 생성</li>
     
- <code><pre>
+  <code><pre>
   $ python manage.py makemigrations [app_name]
- </code></pre>
+  </code></pre>
     
-<li> 변경사항을 DB에 적용</li>
+  <li> 변경사항을 DB에 적용</li>
     
- <code><pre>
-  $ python manage.py migrate
- </code></pre>
-    
-</br>
+  <code><pre>
+   $ python manage.py migrate
+  </code></pre>
+ 
     
 ### API 가지고 놀기(DB 접근하기)
-    
- <code><pre>
-  $ python manage.py shell
- </code></pre>
+<code><pre>
+$ python manage.py shell
+</code></pre>
     
 ### 관리자 사이트 이용하기
     
-<li> 관리자 계정 생성 시작하기 </li>
+  <li> 관리자 계정 생성 시작하기 </li>
   
- <code><pre>
-  $ python manage.py createsuperuser
+   <code><pre>
+   $ python manage.py createsuperuser
     
-    Username: [계정 ID]
+   Username: [계정 ID]
     
-    mail address: [Email]
+   mail address: [Email]
     
-    Password: **********
-    Password (again): *********
+   Password: **********
+   Password (again): *********
  </code></pre>
  
 <li> 권한 부여하기 </li>
 
  <code><pre>
-  # [app_name]/admin.py
+     # [app_name]/admin.py
     
-  from django.contrib import admin
-  from .models import Question
+   from django.contrib import admin
+   from .models import Question
 
-  admin.site.register(Question)
+   admin.site.register(Question)
  </code></pre>
   
 <li> 관리자 사이트: http://127.0.0.1:8000/admin/  </li>
