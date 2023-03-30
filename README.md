@@ -82,6 +82,11 @@
 ### Settings.py
 
   <li>MySQL 연결하기</li>
+  pymysql 설치후 mysqlclient 설치하기
+  <pre><code>
+  $ pip install pymysql
+  $ pip install mysqlclient
+  </code></pre>
   
   <pre><code>
   # 연결을 위한 패키지 설정
